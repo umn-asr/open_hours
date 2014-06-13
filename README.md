@@ -40,6 +40,15 @@ time = DateTime.parse("Saturday, June 19 08:30")
 op.open_at?(time) #=> false
 ```
 
+## Limitations
+
+- Only supports single day or day-range syntax.
+  - "Mo" - works!
+  - "Mo-Th" - works!
+  - "Mo,Th" - Not yet.
+
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/opening_hours/fork )
