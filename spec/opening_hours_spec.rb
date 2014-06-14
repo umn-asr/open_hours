@@ -61,24 +61,24 @@ describe OpeningHours::OpeningHours do
       end
 
       it "returns true if date and time is the first mintue of open hours" do
-        time = DateTime.parse("Monday, June 16 08:00")
+        time = DateTime.parse("Monday, June 16 2014 08:00")
         expect(@it.open_at?(time)).to be_truthy
       end
 
       it "returns true if date and time is the last minute of open hours" do
-        time = DateTime.parse("Monday, June 16 16:30")
+        time = DateTime.parse("Monday, June 16 2014 16:30")
         expect(@it.open_at?(time)).to be_truthy
       end
 
       it "returns true for a time for each day in range" do
         %w(Tuesday Wednesday Thursday).each do |day|
-          time = DateTime.parse("#{day}, June 16 16:30")
+          time = DateTime.parse("#{day}, June 16 2014 16:30")
           expect(@it.open_at?(time)).to be_truthy
         end
       end
 
       it "returns true for a time for a single day" do
-        time = DateTime.parse("Friday, June 16 12:30")
+        time = DateTime.parse("Friday, June 16 2014 12:30")
         expect(@it.open_at?(time)).to be_truthy
       end
     end
@@ -89,22 +89,22 @@ describe OpeningHours::OpeningHours do
       end
 
       it "returns false if the time is before open hours" do
-        time = DateTime.parse("Monday, June 16 07:59")
+        time = DateTime.parse("Monday, June 16 2014 07:59")
         expect(@it.open_at?(time)).to be_falsey
       end
 
       it "returns false if the time is after open hours" do
-        time = DateTime.parse("Monday, June 16 16:31")
+        time = DateTime.parse("Monday, June 16 2014 16:31")
         expect(@it.open_at?(time)).to be_falsey
       end
 
       it "returns false if the time is in open hours, but on an unspecified day" do
-        time = DateTime.parse("Saturday, June 21 12:30")
+        time = DateTime.parse("Saturday, June 21 2014 12:30")
         expect(@it.open_at?(time)).to be_falsey
       end
 
       it "returns false if the time is in open hours for a different day, but not this day" do
-        time = DateTime.parse("Friday, June 20 16:01")
+        time = DateTime.parse("Friday, June 20 2014 16:01")
         expect(@it.open_at?(time)).to be_falsey
       end
     end
