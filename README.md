@@ -2,6 +2,8 @@
 
 Library that parses date ranges in the openingHours format https://schema.org/openingHours.
 
+The main use for this is to take a set of openingHours rules and then find out if the place is open at a specific time.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,36 +20,53 @@ Or install it yourself as:
 
 ## Usage
 
+### With just one openingHours rule
+
 ```ruby
-raw = ["Mo-Th 08:00-16:30", "Fr 08:00-16:00"]
-op = OpeningHours.parse(raw)
+one_day = "Mo 08:00-16:30"
+op = OpeningHours::OpeningHours.parse(one_day)
 
-op.class #=> OpeningHours
+op.class #=> OpeningHours::OpeningHours
 
-time = DateTime.parse("Monday, June 14 08:00")
+time = DateTime.parse("Monday, June 14 2014 08:00")
 op.open_at?(time) #=> true
 
-time = DateTime.parse("Monday, June 14 07:59")
+time = DateTime.parse("Tuesday, June 14 2014 08:00")
 op.open_at?(time) #=> false
+```
 
-time = DateTime.parse("Monday, June 14 16:30")
+### With a range of openingHours rules
+
+```ruby
+multi_day = ["Mo-Th 08:00-16:30", "Fr 08:00-16:00"]
+op = OpeningHours.parse(multi_day)
+
+op.class #=> OpeningHours::OpeningHours
+
+time = DateTime.parse("Monday, June 14 2014 08:00")
 op.open_at?(time) #=> true
 
-time = DateTime.parse("Monday, June 14 16:31")
+time = DateTime.parse("Monday, June 14 2014 07:59")
 op.open_at?(time) #=> false
 
-time = DateTime.parse("Saturday, June 19 08:30")
+time = DateTime.parse("Monday, June 14 2014 16:30")
+op.open_at?(time) #=> true
+
+time = DateTime.parse("Monday, June 14 2014 16:31")
+op.open_at?(time) #=> false
+
+time = DateTime.parse("Saturday, June 19 2014 08:30")
 op.open_at?(time) #=> false
 ```
 
 ## Limitations
 
-- Only supports single day or day-range syntax.
-  - "Mo" - works!
-  - "Mo-Th" - works!
-  - "Mo,Th" - Not yet.
+This gem is in early days. There are parts of the openingHours spec it doesn't handle. Such as,
 
-
+- Comma-separated days (ex: "Mo,Th")
+- The shorthand "Mo-Su" to define being open 24 hours a day, 7 days a week
+- Hours for a specific day that override the normal hours for that day.
+  - This functionality is part of [openingHoursSpecfication](http://schema.org/OpeningHoursSpecification), so may not ever be implemented in this gem.
 
 ## Contributing
 
