@@ -101,6 +101,8 @@ describe OpeningHours::OpeningHours do
       it "returns false if the time is in open hours, but on an unspecified day" do
         time = DateTime.parse("Saturday, June 21 2014 12:30")
         expect(@it.open_at?(time)).to be_falsey
+        time = DateTime.parse("Sunday, June 22 2014 12:30")
+        expect(@it.open_at?(time)).to be_falsey
       end
 
       it "returns false if the time is in open hours for a different day, but not this day" do

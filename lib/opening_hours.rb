@@ -100,7 +100,7 @@ module OpeningHours
     end
 
     def valid_days
-      %w(Mo Tu We Th Fr Sa Su)
+      %w(Su Mo Tu We Th Fr Sa)
     end
   end
 end
