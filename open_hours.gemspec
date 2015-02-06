@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["whit0694@umn.edu"]
   spec.summary       = %q{Parser for the OpeningHours schema from schema.org.}
   spec.description   = %q{Library that parses date ranges in the openingHours format https://schema.org/openingHours.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/umn-asr/open_hours"
   spec.license       = ""
 
   spec.files         = `git ls-files -z`.split("\x0")
