@@ -1,7 +1,7 @@
 require "rspec/core"
-require_relative "../lib/opening_hours"
+require_relative "../lib/open_hours"
 
-describe OpeningHours::OpeningHours do
+describe OpeningHours::OpenHours do
   let(:good_param_examples) {[
     ["Mo-Th 08:00-16:30", "Fr 08:00-16:00"],
     "Mo-Th 08:00-16:30",
@@ -9,17 +9,17 @@ describe OpeningHours::OpeningHours do
 
   describe "parse" do
     describe "with good params" do
-      it "returns an instance of OpeningHours" do
+      it "returns an instance of OpenHours" do
         good_param_examples.each do |good_params|
-          it = OpeningHours::OpeningHours.parse(good_params)
-          expect(it).to be_a OpeningHours::OpeningHours
+          it = OpeningHours.parse(good_params)
+          expect(it).to be_a OpeningHours::OpenHours
         end
       end
     end
 
     describe "with no params" do
       it "raises an ArgumentError" do
-        expect {OpeningHours::OpeningHours.parse()}.to raise_error(ArgumentError)
+        expect {OpeningHours.parse()}.to raise_error(ArgumentError)
       end
     end
 
@@ -39,7 +39,7 @@ describe OpeningHours::OpeningHours do
 
       it "raises an ArgumentError" do
         bad_param_examples.each do |bad_params|
-          expect {OpeningHours::OpeningHours.parse(bad_params)}.to raise_error(ArgumentError)
+          expect {OpeningHours.parse(bad_params)}.to raise_error(ArgumentError)
         end
       end
     end
@@ -50,14 +50,14 @@ describe OpeningHours::OpeningHours do
       it "requires something that can be parsed with strftime" do
         param = DateTime.now
         expect(param).to receive(:to_datetime) { DateTime.now }
-        it = OpeningHours::OpeningHours.parse(good_param_examples.sample)
+        it = OpeningHours.parse(good_param_examples.sample)
         it.open_at?(param)
       end
     end
 
     describe "date/time within opening hours" do
       before do
-        @it = OpeningHours::OpeningHours.parse(["Mo-Th 08:00-16:30", "Fr 08:00-16:00"])
+        @it = OpeningHours.parse(["Mo-Th 08:00-16:30", "Fr 08:00-16:00"])
       end
 
       it "returns true if date and time is the first mintue of open hours" do
@@ -85,7 +85,7 @@ describe OpeningHours::OpeningHours do
 
     describe "date/time outside opening hours" do
       before do
-        @it = OpeningHours::OpeningHours.parse(["Mo-Th 08:00-16:30", "Fr 08:00-16:00"])
+        @it = OpeningHours.parse(["Mo-Th 08:00-16:30", "Fr 08:00-16:00"])
       end
 
       it "returns false if the time is before open hours" do

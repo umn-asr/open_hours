@@ -1,4 +1,4 @@
-# OpeningHours
+# OpenHours
 
 Library that parses date ranges in the openingHours format https://schema.org/openingHours.
 
@@ -24,9 +24,9 @@ Or install it yourself as:
 
 ```ruby
 one_day = "Mo 08:00-16:30"
-op = OpeningHours::OpeningHours.parse(one_day)
+op = OpeningHours.parse(one_day)
 
-op.class #=> OpeningHours::OpeningHours
+op.class #=> OpeningHours::OpenHours
 
 time = DateTime.parse("Monday, June 14 2014 08:00")
 op.open_at?(time) #=> true
@@ -41,7 +41,7 @@ op.open_at?(time) #=> false
 multi_day = ["Mo-Th 08:00-16:30", "Fr 08:00-16:00"]
 op = OpeningHours.parse(multi_day)
 
-op.class #=> OpeningHours::OpeningHours
+op.class #=> OpeningHours::OpenHours
 
 time = DateTime.parse("Monday, June 14 2014 08:00")
 op.open_at?(time) #=> true

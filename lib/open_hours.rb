@@ -1,12 +1,12 @@
-require "opening_hours/version"
+require "open_hours/version"
 require "ostruct"
 
 module OpeningHours
-  class OpeningHours
-    def self.parse(params)
-      self.new(params)
-    end
+  def self.parse(params)
+    OpenHours.new(params)
+  end
 
+  class OpenHours
     def initialize(params)
       params = Array(params)
       check_params(params)

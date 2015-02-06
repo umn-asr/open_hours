@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'opening_hours/version'
+require 'open_hours/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "opening_hours"
-  spec.version       = OpeningHours::VERSION
+  spec.name          = "open_hours"
+  spec.version       = OpenHours::VERSION
   spec.authors       = ["Ian Whitney"]
   spec.email         = ["whit0694@umn.edu"]
   spec.summary       = %q{Parser for the OpeningHours schema from schema.org.}
   spec.description   = %q{Library that parses date ranges in the openingHours format https://schema.org/openingHours.}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = ""
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
