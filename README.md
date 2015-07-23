@@ -8,7 +8,7 @@ The main use for this is to take a set of openingHours rules and then find out i
 
 Add this line to your application's Gemfile:
 
-    gem 'opening_hours'
+    gem 'open_hours'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install opening_hours
+    $ gem install open_hours
 
 ## Usage
 
